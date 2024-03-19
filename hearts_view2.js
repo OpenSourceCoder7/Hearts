@@ -1,7 +1,7 @@
 
 import { HeartsRobotKmp } from "./hearts_robot_kmp.js";
 
-//Zhehao Wang helped with rendering logic 
+//Zhehao Wang helped with rendering logic  
 
 export class HeartsView {
   #model;
@@ -101,7 +101,7 @@ export class HeartsView {
             <div id="passCardsMessage" class="message"></div>
             <button id="passCardsButton">Pass Selected Cards</button>
             `;
-    //Cards logic
+    //Cards logic 
     let selectedCards = [];
     document.querySelectorAll("#playerHand .card").forEach((cardElement) => {
       cardElement.addEventListener("click", () => {
@@ -192,7 +192,7 @@ export class HeartsView {
         <div id="playerHand" class="hand">${cardSelectionHTML}</div>
         <button id="cardPlayButton">Play Selected Card</button>
         `;
-
+    //Zhehao's card logic
     let selectedCards = [];
     document.querySelectorAll("#playerHand .card").forEach((cardElement) => {
       cardElement.addEventListener("click", () => {
