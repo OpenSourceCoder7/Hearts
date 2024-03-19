@@ -4,6 +4,7 @@ import { HeartsRobotKmp } from "./hearts_robot_kmp.js";
 //audio file is from https://www.videvo.net
 //asked classmates questions on how they approached initializing card buttons.
 //in process of understanding event listener logic
+//I forgot to select that I made use of generative AI in the attestation form- I definitley got help from AI in some of the logic.
 export class HeartsView {
   model;
   controller;
@@ -26,7 +27,8 @@ export class HeartsView {
       this.render(document.querySelector("#main"));
 
     }))
-    this.model.addEventListener("scoreupdate", () => this.#dolater(() => {
+    this.model.addEventListener("scoreupdate", (event) => this.#dolater(() => {
+      this.handleScoreUpdate(event);
       this.render(document.querySelector("#main"));
 
     }))
@@ -59,10 +61,15 @@ export class HeartsView {
     const startGameBtn = renderDiv.querySelector("#startGame");
     startGameBtn.addEventListener("click", () => {
       this.startGame(renderDiv);
+
     });
   }
 
   startGame(renderDiv) {
+    let explosion = new Audio('explosion.mp3');
+    explosion.volume = 1;
+    explosion.loop = false;
+    explosion.play();
     this.setupRobots();
     this.playerName = document.querySelector("#playerName").value;
     this.controller.startGame("North", "East", this.playerName, "West");
@@ -92,7 +99,7 @@ export class HeartsView {
       <div id="passCardsMessage" class="message"></div>
       <button id="passCardsButton">Pass Selected Cards</button>
     `;
-  
+    
     let selectedCards = [];
     document.querySelectorAll("#playerHand .card").forEach((cardElement) => {
       cardElement.addEventListener("click", () => {
@@ -190,6 +197,7 @@ export class HeartsView {
         this.controller.playCard("south", cardsToPlay[0]);
       }
     });
+    renderDiv.appendChild(this.renderScores(renderDiv));
   }
   
 
@@ -245,7 +253,7 @@ export class HeartsView {
     } else {
       renderDiv.insertAdjacentHTML("beforeend", `<div id="scores">${scoreDetails}</div>`);
     }
-    this.render(renderDiv);
+    renderDiv.append(scoresDiv);
   }
   
 }
