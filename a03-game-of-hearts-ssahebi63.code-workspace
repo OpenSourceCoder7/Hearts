@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../sandbox for web dev"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "a03-game-of-hearts-ssahebi63"
+	}
+}

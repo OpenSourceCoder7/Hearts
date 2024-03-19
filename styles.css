@@ -1,0 +1,133 @@
+
+.board {
+    height: 600px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #4caf50; /* Green */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+
+
+
+  
+  
+  #playerName {
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+  }
+  
+ 
+  #startGame {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4caf50; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #startGame:hover {
+    background-color: #45a049;
+  }
+  
+
+  #passingDirection {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+ 
+  .hand {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .card {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .card.selected {
+    background-color: #e0e0e0; 
+  }
+  
+  .message {
+    margin-top: 10px;
+    color: red;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #008cba; /* Blue */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #0077a3;
+  }
+  
+
+  .trick {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+
+  .trick-card {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  #card0 {
+    color: red;
+
+}
+
+#card1 {
+    color: pink;
+
+}
+
+#card2 {
+    color: #008cba;
+
+    
+}
+
+#card3 {
+    color: yellow;
+
+}
+
+
+
+
+  

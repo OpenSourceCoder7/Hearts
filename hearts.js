@@ -1,6 +1,6 @@
 import {HeartsModel} from "./hearts_model.js";
 import {HeartsController} from "./hearts_controller.js";
-import {HeartsView} from "./hearts_view.js";
+import {HeartsView} from "./hearts_view2.js";
 
 
 let model = new HeartsModel();

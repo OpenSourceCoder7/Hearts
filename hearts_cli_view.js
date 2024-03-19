@@ -124,9 +124,9 @@ export class HeartsCLIView {
 
         let west_robot = new HeartsRobotKmp(this.#model, this.#controller, 'west');
         let north_robot = new HeartsRobotKmp(this.#model, this.#controller, 'north');
-        let east_robot = new HeartsRobotKmp(this.#model, this.#controller, 'east');
+         let east_robot = new HeartsRobotKmp(this.#model, this.#controller, 'east');
 
-        this.#controller.startGame('Alice', 'Bob', 'You', 'Mike');
+        this.#controller.startGame('north robot', 'east robot', 'west robot', 'Saman Sahebi');
     }
 
     #parseCard(cstr) {

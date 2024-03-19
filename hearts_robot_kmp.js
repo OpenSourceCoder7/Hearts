@@ -21,9 +21,11 @@ export class HeartsRobotKmp {
             } 
         });
         
-
+        
         this.#model.addEventListener('trickstart', () => this.#playCard());
         this.#model.addEventListener('trickplay', () => this.#playCard());
+        
+        
     }
 
     #playCard() {
