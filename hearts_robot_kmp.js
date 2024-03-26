@@ -2,11 +2,15 @@ export class HeartsRobotKmp {
     #model;
     #controller;
     #position;
+    #dolater(fn) { setTimeout(fn,1000)};
+   
+    
 
     constructor(model, controller, position) {
         this.#model = model;
         this.#controller = controller;
         this.#position = position;
+        
 
         this.#model.addEventListener('stateupdate', () => {
             let state = this.#model.getState();
@@ -22,7 +26,7 @@ export class HeartsRobotKmp {
         });
         
         
-        this.#model.addEventListener('trickstart', () => this.#playCard());
+        this.#model.addEventListener('trickstart', () =>   this.#playCard());
         this.#model.addEventListener('trickplay', () => this.#playCard());
         
         

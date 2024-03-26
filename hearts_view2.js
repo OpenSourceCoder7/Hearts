@@ -29,7 +29,6 @@ export class HeartsView {
     }))
     this.model.addEventListener("scoreupdate", (event) => this.#dolater(() => {
       this.handleScoreUpdate(event);
-      this.render(document.querySelector("#main"));
 
     }))
   }
@@ -80,6 +79,7 @@ export class HeartsView {
     this.robot1 = new HeartsRobotKmp(this.model, this.controller, "west");
     this.robot2 = new HeartsRobotKmp(this.model, this.controller, "north");
     this.robot3 = new HeartsRobotKmp(this.model, this.controller, "east");
+    //this.robot4 = new HeartsRobotKmp(this.model, this.controller, "south");
   }
 
   renderPassingState(renderDiv) {
@@ -154,7 +154,7 @@ export class HeartsView {
       let trickCardID = 0;
       ["north", "east", "west", "south"].forEach((position) => {
         const card = currentTrick.getCard(position);
-        trickHTML += `<div ="trick-card" id="card${trickCardID++}">${
+        trickHTML += `<div class="trick-card" id="card${trickCardID++}">${
           card ? `${card.getRankName()} of ${card.getSuit()}` : `${this.model.getPlayerName(position)} has not gone yet`
         }</div>`;
       });
@@ -197,7 +197,7 @@ export class HeartsView {
         this.controller.playCard("south", cardsToPlay[0]);
       }
     });
-    renderDiv.appendChild(this.renderScores(renderDiv));
+    this.renderScores(renderDiv);
   }
   
 
@@ -242,9 +242,17 @@ export class HeartsView {
     };
 
     let scoreDetails = "<h3>Current Scores:</h3>";
-    Object.entries(scores).forEach(([name, score]) => {
-      scoreDetails += `<p>${name}: ${score} points</p>`;
+    scoreDetails += "<table><tr>"
+    Object.keys(scores).forEach((name) => {
+      scoreDetails += `<th>${name}</th>`;
     });
+    scoreDetails += "</tr>"
+    scoreDetails +="<tr>"
+    Object.values(scores).forEach((score) => {
+      scoreDetails += `<th>Points: ${score}</th>`;
+    });
+    scoreDetails += "</tr>"
+    scoreDetails += "</table>"
 
     // Update the scores section of the UI
     const scoresDiv = renderDiv.querySelector("#scores");
@@ -253,7 +261,7 @@ export class HeartsView {
     } else {
       renderDiv.insertAdjacentHTML("beforeend", `<div id="scores">${scoreDetails}</div>`);
     }
-    renderDiv.append(scoresDiv);
+    //renderDiv.append(scoresDiv);
   }
   
 }
