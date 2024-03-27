@@ -1,10 +1,10 @@
 import { HeartsRobotKmp } from "./hearts_robot_kmp.js";
 
-//Zhehao Wang helped me achieve a modular rendering style (he did not help me "significantly" though)
+//Zhehao Wang helped me achieve a modular rendering style and dynamic button logic (he did not help me "significantly" though)
+//Note: I DID NOT COPY AND PASTE AI CODE OR UTILIZE AI FOR THE ENTIRETY OF THE PROJECT. I used AI to help me figure out ways to model rendering and mapping logic in similar way to w3schools. I mentioned that I used AI regardless in the attestation form
+//This version is now complete (I submitted a buggy version, and now I am really happy with this one.)
 //audio file is from https://www.videvo.net
-//asked classmates questions on how they approached initializing card buttons.
-//in process of understanding event listener logic
-//I forgot to select that I made use of generative AI in the attestation form- I definitley got help from AI in some of the logic.
+//images from https://code.google.com/archive/p/vector-playing-cards/downloads
 export class HeartsView {
   model;
   controller;
@@ -90,7 +90,8 @@ export class HeartsView {
     const cards = hand.getCards();
   
     const cardSelectionHTML = cards.map((card, index) => {
-      return `<div class="card" data-card-index="${index}">${card.getRankName()} of ${card.getSuit()}</div>`;
+      //choose img based on card
+      return `<div class="card" data-card-index="${index}"><img src="./cards/${card.getRankName()}_of_${card.getSuit()}.png"></div>`
     }).join("");
   
     renderDiv.innerHTML = `
@@ -140,8 +141,9 @@ export class HeartsView {
     const cards = hand.getCards();
     const currentTrick = this.model.getCurrentTrick();
   
-    let cardSelectionHTML = cards.map((card, index) => {
-      return `<div class="card" data-card-index="${index}">${card.getRankName()} of ${card.getSuit()}</div>`;
+    const cardSelectionHTML = cards.map((card, index) => {
+      //choose img based on card
+      return `<div class="card" data-card-index="${index}"><img src="./cards/${card.getRankName()}_of_${card.getSuit()}.png"></div>`
     }).join("");
   
     renderDiv.innerHTML = `
@@ -155,7 +157,7 @@ export class HeartsView {
       ["north", "east", "west", "south"].forEach((position) => {
         const card = currentTrick.getCard(position);
         trickHTML += `<div class="trick-card" id="card${trickCardID++}">${
-          card ? `${card.getRankName()} of ${card.getSuit()}` : `${this.model.getPlayerName(position)} has not gone yet`
+          card ? `<img src="./cards/${card.getRankName()}_of_${card.getSuit()}.png">` : `${this.model.getPlayerName(position)} has not gone yet`
         }</div>`;
       });
     }
@@ -262,6 +264,10 @@ export class HeartsView {
       renderDiv.insertAdjacentHTML("beforeend", `<div id="scores">${scoreDetails}</div>`);
     }
     //renderDiv.append(scoresDiv);
+  }
+
+  cardimg(rank, suit) {
+
   }
   
 }
