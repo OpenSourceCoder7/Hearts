@@ -2,7 +2,12 @@ export class HeartsRobotKmp {
     #model;
     #controller;
     #position;
-    #dolater(fn) { setTimeout(fn,1000)};
+    #todo_list;
+    #doSlowly(fn) {
+        this.#todo_list.push(fn);
+      };
+    
+    
    
     
 
@@ -10,9 +15,18 @@ export class HeartsRobotKmp {
         this.#model = model;
         this.#controller = controller;
         this.#position = position;
+        this.#todo_list = [];
+
+        setInterval(() => {
+            if (this.#todo_list.length >  0){
+              let next_todo = this.#todo_list.shift();
+              next_todo();
+      
+            }
+          }, 50);
         
 
-        this.#model.addEventListener('stateupdate', () => {
+        this.#model.addEventListener('stateupdate', () => this.#doSlowly(()=> {
             let state = this.#model.getState();
             if ((state == 'passing') && (this.#model.getPassing() != 'none')) {
                 let hand = this.#model.getHand(this.#position);
@@ -23,14 +37,15 @@ export class HeartsRobotKmp {
                                         .map(cr => cr[0]);
                 this.#controller.passCards(this.#position, cards_to_pass);  
             } 
-        });
+        }));
         
         
-        this.#model.addEventListener('trickstart', () =>   this.#playCard());
-        this.#model.addEventListener('trickplay', () => this.#playCard());
+        this.#model.addEventListener('trickstart', () => this.#doSlowly(()=>{this.#playCard()}));
+        this.#model.addEventListener('trickplay', () => this.#doSlowly(()=>{this.#playCard()}));
         
         
     }
+    
 
     #playCard() {
         if (this.#model.getCurrentTrick().nextToPlay() == this.#position) {

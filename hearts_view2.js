@@ -5,32 +5,49 @@ import { HeartsRobotKmp } from "./hearts_robot_kmp.js";
 //This version is now complete (I submitted a buggy version, and now I am really happy with this one.)
 //audio file is from https://www.videvo.net
 //images from https://code.google.com/archive/p/vector-playing-cards/downloads
+//next step is to add animations...
 export class HeartsView {
   model;
   controller;
-  playerName
-  #dolater(fn) { setTimeout(fn,1000)};
+  playerName;
+
   constructor(model, controller) {
     this.model = model;
     this.controller = controller;
     this.playerName = "Saman";
+  
+
+
     this.render(document.querySelector("#main"));
-    this.model.addEventListener("stateupdate", () => this.#dolater(() => {
-      this.render(document.querySelector("#main"));
+    this.model.addEventListener("stateupdate", () => {
 
-    }))
-    this.model.addEventListener("trickstart", () => this.#dolater(() => {
-      this.render(document.querySelector("#main"));
+      
+        this.render(document.querySelector("#main"));
+  
+   
+    }
+    )
+    this.model.addEventListener("trickstart", () => {
 
-    }))
-    this.model.addEventListener("trickplay", () => this.#dolater(() => {
-      this.render(document.querySelector("#main"));
+    
+        this.render(document.querySelector("#main"));
+  
+ 
 
-    }))
-    this.model.addEventListener("scoreupdate", (event) => this.#dolater(() => {
-      this.handleScoreUpdate(event);
+    }  )
+    this.model.addEventListener("trickplay", () => {
 
-    }))
+
+        this.render(document.querySelector("#main"));
+  
+
+    } )
+    this.model.addEventListener("scoreupdate", (event) => {
+
+        this.handleScoreUpdate(event);
+
+
+    })
   }
 
  
@@ -38,7 +55,8 @@ export class HeartsView {
   
 
   render(renderDiv) {
-    const state = this.model.getState();
+    
+      const state = this.model.getState();
     if (state === "uninitialized") {
       this.renderInitialState(renderDiv);
     } else if (state === "passing") {
@@ -48,6 +66,7 @@ export class HeartsView {
     } else if (state === "complete") {
       this.renderCompleteState(renderDiv);
     }
+    
   }
 
   renderInitialState(renderDiv) {
@@ -65,7 +84,7 @@ export class HeartsView {
   }
 
   startGame(renderDiv) {
-    let explosion = new Audio('explosion.mp3');
+    let explosion = new Audio('mlg-airhorn.mp3');
     explosion.volume = 1;
     explosion.loop = false;
     explosion.play();
@@ -79,7 +98,7 @@ export class HeartsView {
     this.robot1 = new HeartsRobotKmp(this.model, this.controller, "west");
     this.robot2 = new HeartsRobotKmp(this.model, this.controller, "north");
     this.robot3 = new HeartsRobotKmp(this.model, this.controller, "east");
-    //this.robot4 = new HeartsRobotKmp(this.model, this.controller, "south");
+    this.robot4 = new HeartsRobotKmp(this.model, this.controller, "south");
   }
 
   renderPassingState(renderDiv) {
@@ -226,6 +245,10 @@ export class HeartsView {
         <h3>Final Scores:</h3>
         <p>${scoreDetails}</p>
       </div>`;
+      let explosion = new Audio('explosion.mp3');
+      explosion.volume = 1;
+      explosion.loop = false;
+      explosion.play();
   }
 
   handleScoreUpdate(event) {
