@@ -1,50 +1,4 @@
-# A03 - Game of Hearts
 
-In this assignment, you'll create a user interface for the game of Hearts. 
-If you are unfamiliar with this game, see [here](https://bicyclecards.com/how-to-play/hearts/) for the rules. Here is a reasonable on-line version of the game: https://cardgames.io/hearts/.
-
-You will only need to write the view components of the game. I have already provided
-the model and controller. The file hearts.html is the game page. It loads hearts.js as a
-module. That file imports the model and controller from hearts_model.js and hearts_controller.js. You are responsible for completing the code in hearts_view.js which
-should render your interface in the main div of hearts.html and interact with the model and controller components to provide a user interface. 
-
-A command line interface version has been provided in hearts_cli.html, hearts_cli.js, and hearts_cli_view.js. This is the version that I demonstrated in class. Feel free to look at this code to understand how to work with the model and controller objects.
-
-Your view components should only interact with the model and controller components as described in the model and controller references below. In particular, you should not call any model or controller component methods that are not specifically described in the reference or create new model objects other than Card.
-
-Your view components should register as listeners of model object events as necessary. The events (if any) dispatched by a model object are described in the model reference.
-
-When your UI first renders, it should be providing an interface for setting the name of the user playing. Optionally, your UI may provide a way of setting the names of the robot players or those may be set statically. Once name information is established, your code should create three robot objects (see HeartsRobotKmp in hearts_robot_kmp.js) and start the game by calling the controller's ```startGame()``` method. 
-
-Once started, your UI should provide an interface for passing and playing cards out of your user's hand as appropriate. As rounds are completed, the score of the game should be displayed to the user in some way when updated. There should be some sort of indication when the game is over and who won. Otherwise, you are free to make the interface work however you wish. Your interface should NOT, however, rely on using 'alert()'.
-
-### Grading Rubric
-
-70 points for basic functionality as described above. A 20 point deduction if your interface causes or could used in a way that causes a controller error alert.
-
-10 points for including any of the following:
-* Sound effects
-* Animation effects when passing or playing cards.
-
-10 points for writing your own robot that does something other than picking cards at random. If you write 
-your own robot, please be sure to use same constructor form as HeartsRobotKmp.
-
-5 points for completing your peer reviews.
-
-Up to 5 points as the average of the peer reviews given to you using the following 0-5 scale:
-
-* 0: No Submission
-* 1: Poorly designed, interface is difficult to use.
-* 2: Meets requirements of assignment but not much to it other than that.
-* 3: Great user experience and pleasing design.
-* 4: Better than most other submissions but not necessarily the best.
-* 5: Professional-level design and operation. Could reasonably be nominated for best   
-     interface.
-
-Sumbit your repository to GradeScope and fill out the following attestation form:
-https://docs.google.com/forms/d/e/1FAIpQLSfku-bOKYcjGr8oN3xhjzqos-Vv_Z7p9fDPpNb8n4FZJkjVrA/viewform?usp=sf_link
-
-# Model Reference
 
 ## HeartsModel
 
@@ -125,9 +79,6 @@ The HeartsModel object represents the overall game model. The following methods 
   in the specified position in the current round.
 
 ### HeartsModel Events
-
-Because HeartsModel extends EventTarget, you can directly register a listener using
-addEventListener and otherwise use HeartsModel as an EventTarget. The following events are generated. Registered listeners are invoked with an event object as a parameter. Some events are delivered with additional information in that event object's ```detail``` property as described here.
 
 * stateupdate
   
@@ -210,7 +161,6 @@ Hand objects generate only one type of event, 'update'. This event is generated 
 A Card object represents a card of a particular suit and rank. Suits are 
 represented by the strings 'hearts', 'spades', 'clubs', and 'diamonds'. 
 Ranks are represented as numbers from 2 to 14 where the values 11, 12, 13, and 14 correspond to the face cards Jack, Queen, King, and Ace respectively. 
-You can create new Card objects to represent a specific card as necessary. 
 
 Other methods of Card objects include:
 
@@ -273,7 +223,6 @@ to the following methods:
 
 # Controller Reference
 
-There are only four methods of the controller that you should need. 
 
 * startGame(north_name, east_name, south_name, west_name)
 
