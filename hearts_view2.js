@@ -1,8 +1,4 @@
 import { HeartsRobotKmp } from "./hearts_robot_kmp.js";
-
-//Zhehao Wang helped me achieve a modular rendering style and dynamic button logic (he did not help me "significantly" though)
-//Note: I DID NOT COPY AND PASTE AI CODE OR UTILIZE AI FOR THE ENTIRETY OF THE PROJECT. I used AI code examplds to help me figure out ways to model rendering and mapping logic in similar way to w3schools.Regardless, I mentioned that I used AI  in the attestation form.
-//This version is now complete (I submitted a buggy version, and now I am really happy with this one.)
 //audio files are from https://www.videvo.net
 //images from https://code.google.com/archive/p/vector-playing-cards/downloads
 export class HeartsView {
